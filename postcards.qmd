@@ -1,0 +1,16 @@
+---
+title: "Voting and Postcards"
+author: "Inam Khan"
+format: html
+execute: 
+  echo: false
+  message: false
+  warning: false
+---
+
+```{r}
+library(tidyverse)
+library(primer.data)
+```
+
+Encouraging voter turnout is a longstanding challenge in democratic elections, and campaigns often rely on tools like postcards to influence behavior. In this analysis, we use data from a 2006 field experiment in Michigan with over 180,000 observations to explore whether similar postcard strategies might help increase turnout in the upcoming Texas gubernatorial election, while acknowledging the contextual differences between states.

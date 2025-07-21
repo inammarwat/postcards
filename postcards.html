@@ -99,7 +99,19 @@ window.Quarto = {
 </header>
 
 
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="postcards_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 <p>Encouraging voter turnout is a longstanding challenge in democratic elections, and campaigns often use strategies like postcards to influence civic participation. In this analysis, we examine data from a 2006 field experiment in Michigan involving over 180,000 registered voters to assess whether sending postcards can increase primary election turnout — with the goal of informing similar efforts in the upcoming Texas gubernatorial election. However, our model may be limited by the assumption that the treatment effects observed in Michigan in 2006 will remain stable and representative when applied to a different population, time, and political context in Texas.</p>
+<p>We model the probability of voting in a primary election as a logistic function of postcard treatment, voter engagement (including interaction effects), sex, and age. This structure allows us to estimate treatment effects across different types of voters and isolate the impact of each postcard message.</p>
+<p>The model shows that the “Neighbors” postcard is particularly effective, especially for individuals who rarely vote. In this group, the predicted probability of turnout increases dramatically, highlighting how social pressure may motivate even the least engaged voters.</p>
+<p>The estimated probability of voting for “Always Vote” individuals who received the Neighbors postcard is about 0.89, with a 95% confidence interval from 0.87 to 0.91, suggesting a strong treatment effect for this group under our model.</p>
 <p><span class="math display">\[
 Y \sim \text{Bernoulli}(\rho)
 \]</span></p>
@@ -114,23 +126,23 @@ Y \sim \text{Bernoulli}(\rho)
 \]</span></p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="pkpizbuzrx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#pkpizbuzrx table {
+<div id="onbyjmokch" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#onbyjmokch table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#pkpizbuzrx thead, #pkpizbuzrx tbody, #pkpizbuzrx tfoot, #pkpizbuzrx tr, #pkpizbuzrx td, #pkpizbuzrx th {
+#onbyjmokch thead, #onbyjmokch tbody, #onbyjmokch tfoot, #onbyjmokch tr, #onbyjmokch td, #onbyjmokch th {
   border-style: none;
 }
 
-#pkpizbuzrx p {
+#onbyjmokch p {
   margin: 0;
   padding: 0;
 }
 
-#pkpizbuzrx .gt_table {
+#onbyjmokch .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -156,12 +168,12 @@ Y \sim \text{Bernoulli}(\rho)
   border-left-color: #D3D3D3;
 }
 
-#pkpizbuzrx .gt_caption {
+#onbyjmokch .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#pkpizbuzrx .gt_title {
+#onbyjmokch .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -173,7 +185,7 @@ Y \sim \text{Bernoulli}(\rho)
   border-bottom-width: 0;
 }
 
-#pkpizbuzrx .gt_subtitle {
+#onbyjmokch .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -185,7 +197,7 @@ Y \sim \text{Bernoulli}(\rho)
   border-top-width: 0;
 }
 
-#pkpizbuzrx .gt_heading {
+#onbyjmokch .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -197,13 +209,13 @@ Y \sim \text{Bernoulli}(\rho)
   border-right-color: #D3D3D3;
 }
 
-#pkpizbuzrx .gt_bottom_border {
+#onbyjmokch .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#pkpizbuzrx .gt_col_headings {
+#onbyjmokch .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -218,7 +230,7 @@ Y \sim \text{Bernoulli}(\rho)
   border-right-color: #D3D3D3;
 }
 
-#pkpizbuzrx .gt_col_heading {
+#onbyjmokch .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -238,7 +250,7 @@ Y \sim \text{Bernoulli}(\rho)
   overflow-x: hidden;
 }
 
-#pkpizbuzrx .gt_column_spanner_outer {
+#onbyjmokch .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -250,15 +262,15 @@ Y \sim \text{Bernoulli}(\rho)
   padding-right: 4px;
 }
 
-#pkpizbuzrx .gt_column_spanner_outer:first-child {
+#onbyjmokch .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#pkpizbuzrx .gt_column_spanner_outer:last-child {
+#onbyjmokch .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#pkpizbuzrx .gt_column_spanner {
+#onbyjmokch .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -270,11 +282,11 @@ Y \sim \text{Bernoulli}(\rho)
   width: 100%;
 }
 
-#pkpizbuzrx .gt_spanner_row {
+#onbyjmokch .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#pkpizbuzrx .gt_group_heading {
+#onbyjmokch .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -300,7 +312,7 @@ Y \sim \text{Bernoulli}(\rho)
   text-align: left;
 }
 
-#pkpizbuzrx .gt_empty_group_heading {
+#onbyjmokch .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -315,15 +327,15 @@ Y \sim \text{Bernoulli}(\rho)
   vertical-align: middle;
 }
 
-#pkpizbuzrx .gt_from_md > :first-child {
+#onbyjmokch .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#pkpizbuzrx .gt_from_md > :last-child {
+#onbyjmokch .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#pkpizbuzrx .gt_row {
+#onbyjmokch .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -342,7 +354,7 @@ Y \sim \text{Bernoulli}(\rho)
   overflow-x: hidden;
 }
 
-#pkpizbuzrx .gt_stub {
+#onbyjmokch .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -355,7 +367,7 @@ Y \sim \text{Bernoulli}(\rho)
   padding-right: 5px;
 }
 
-#pkpizbuzrx .gt_stub_row_group {
+#onbyjmokch .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -369,15 +381,15 @@ Y \sim \text{Bernoulli}(\rho)
   vertical-align: top;
 }
 
-#pkpizbuzrx .gt_row_group_first td {
+#onbyjmokch .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#pkpizbuzrx .gt_row_group_first th {
+#onbyjmokch .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#pkpizbuzrx .gt_summary_row {
+#onbyjmokch .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -387,16 +399,16 @@ Y \sim \text{Bernoulli}(\rho)
   padding-right: 5px;
 }
 
-#pkpizbuzrx .gt_first_summary_row {
+#onbyjmokch .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#pkpizbuzrx .gt_first_summary_row.thick {
+#onbyjmokch .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#pkpizbuzrx .gt_last_summary_row {
+#onbyjmokch .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -406,7 +418,7 @@ Y \sim \text{Bernoulli}(\rho)
   border-bottom-color: #D3D3D3;
 }
 
-#pkpizbuzrx .gt_grand_summary_row {
+#onbyjmokch .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -416,7 +428,7 @@ Y \sim \text{Bernoulli}(\rho)
   padding-right: 5px;
 }
 
-#pkpizbuzrx .gt_first_grand_summary_row {
+#onbyjmokch .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -426,7 +438,7 @@ Y \sim \text{Bernoulli}(\rho)
   border-top-color: #D3D3D3;
 }
 
-#pkpizbuzrx .gt_last_grand_summary_row_top {
+#onbyjmokch .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -436,11 +448,11 @@ Y \sim \text{Bernoulli}(\rho)
   border-bottom-color: #D3D3D3;
 }
 
-#pkpizbuzrx .gt_striped {
+#onbyjmokch .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#pkpizbuzrx .gt_table_body {
+#onbyjmokch .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -449,7 +461,7 @@ Y \sim \text{Bernoulli}(\rho)
   border-bottom-color: #D3D3D3;
 }
 
-#pkpizbuzrx .gt_footnotes {
+#onbyjmokch .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -463,7 +475,7 @@ Y \sim \text{Bernoulli}(\rho)
   border-right-color: #D3D3D3;
 }
 
-#pkpizbuzrx .gt_footnote {
+#onbyjmokch .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -472,7 +484,7 @@ Y \sim \text{Bernoulli}(\rho)
   padding-right: 5px;
 }
 
-#pkpizbuzrx .gt_sourcenotes {
+#onbyjmokch .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -486,7 +498,7 @@ Y \sim \text{Bernoulli}(\rho)
   border-right-color: #D3D3D3;
 }
 
-#pkpizbuzrx .gt_sourcenote {
+#onbyjmokch .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -494,72 +506,72 @@ Y \sim \text{Bernoulli}(\rho)
   padding-right: 5px;
 }
 
-#pkpizbuzrx .gt_left {
+#onbyjmokch .gt_left {
   text-align: left;
 }
 
-#pkpizbuzrx .gt_center {
+#onbyjmokch .gt_center {
   text-align: center;
 }
 
-#pkpizbuzrx .gt_right {
+#onbyjmokch .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#pkpizbuzrx .gt_font_normal {
+#onbyjmokch .gt_font_normal {
   font-weight: normal;
 }
 
-#pkpizbuzrx .gt_font_bold {
+#onbyjmokch .gt_font_bold {
   font-weight: bold;
 }
 
-#pkpizbuzrx .gt_font_italic {
+#onbyjmokch .gt_font_italic {
   font-style: italic;
 }
 
-#pkpizbuzrx .gt_super {
+#onbyjmokch .gt_super {
   font-size: 65%;
 }
 
-#pkpizbuzrx .gt_footnote_marks {
+#onbyjmokch .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#pkpizbuzrx .gt_asterisk {
+#onbyjmokch .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#pkpizbuzrx .gt_indent_1 {
+#onbyjmokch .gt_indent_1 {
   text-indent: 5px;
 }
 
-#pkpizbuzrx .gt_indent_2 {
+#onbyjmokch .gt_indent_2 {
   text-indent: 10px;
 }
 
-#pkpizbuzrx .gt_indent_3 {
+#onbyjmokch .gt_indent_3 {
   text-indent: 15px;
 }
 
-#pkpizbuzrx .gt_indent_4 {
+#onbyjmokch .gt_indent_4 {
   text-indent: 20px;
 }
 
-#pkpizbuzrx .gt_indent_5 {
+#onbyjmokch .gt_indent_5 {
   text-indent: 25px;
 }
 
-#pkpizbuzrx .katex-display {
+#onbyjmokch .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#pkpizbuzrx div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#onbyjmokch div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>

@@ -13,6 +13,7 @@ library(tidyverse)
 library(primer.data)
 library(tidymodels)
 library(broom)
+library(marginaleffects)
 ```
 
 ```{r}
@@ -36,12 +37,51 @@ fit_vote <- logistic_reg(engine = "glm") |>
   fit(voted ~ age + sex + treatment * voter_class, data = x)
 ```
 
+```{r}
+library(ggplot2)
+library(dplyr)
+
+# Assuming this is your data
+preds_df <- plot_predictions(
+  fit_vote,
+  type = "prob",
+  condition = c("treatment", "voter_class"),
+  draw = FALSE
+)
+
+# Beautiful plot
+ggplot(preds_df, aes(x = treatment, y = estimate, fill = voter_class)) +
+  geom_col(position = position_dodge(width = 0.8), width = 0.7) +
+  geom_errorbar(
+    aes(ymin = conf.low, ymax = conf.high),
+    position = position_dodge(width = 0.8),
+    width = 0.2
+  ) +
+  labs(
+    title = "Estimated Probability of Voting by Treatment and Voter Class",
+    subtitle = "Neighbors postcard increases turnout most, especially among infrequent voters",
+    x = "Postcard Treatment",
+    y = "Estimated Probability of Voting",
+    fill = "Voter Class",
+    caption = "Source: 2006 Michigan Voter Turnout Experiment"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", size = 16),
+    plot.subtitle = element_text(size = 13),
+    axis.title.x = element_text(margin = margin(t = 10)),
+    axis.title.y = element_text(margin = margin(r = 10))
+  )
+```
+
 
 Encouraging voter turnout is a longstanding challenge in democratic elections, and campaigns often use strategies like postcards to influence civic participation. In this analysis, we examine data from a 2006 field experiment in Michigan involving over 180,000 registered voters to assess whether sending postcards can increase primary election turnout — with the goal of informing similar efforts in the upcoming Texas gubernatorial election. However, our model may be limited by the assumption that the treatment effects observed in Michigan in 2006 will remain stable and representative when applied to a different population, time, and political context in Texas.
 
 We model the probability of voting in a primary election as a logistic function of postcard treatment, voter engagement (including interaction effects), sex, and age. This structure allows us to estimate treatment effects across different types of voters and isolate the impact of each postcard message.
 
 The model shows that the “Neighbors” postcard is particularly effective, especially for individuals who rarely vote. In this group, the predicted probability of turnout increases dramatically, highlighting how social pressure may motivate even the least engaged voters.
+
+The estimated probability of voting for "Always Vote" individuals who received the Neighbors postcard is about 0.89, with a 95% confidence interval from 0.87 to 0.91, suggesting a strong treatment effect for this group under our model.
 
 
 $$
@@ -82,3 +122,4 @@ tidy(fit_vote, conf.int = TRUE) |>
     conf.high = "Upper 95% CI"
   )
 ```
+

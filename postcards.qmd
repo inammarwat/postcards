@@ -39,6 +39,9 @@ fit_vote <- logistic_reg(engine = "glm") |>
 
 Encouraging voter turnout is a longstanding challenge in democratic elections, and campaigns often use strategies like postcards to influence civic participation. In this analysis, we examine data from a 2006 field experiment in Michigan involving over 180,000 registered voters to assess whether sending postcards can increase primary election turnout — with the goal of informing similar efforts in the upcoming Texas gubernatorial election. However, our model may be limited by the assumption that the treatment effects observed in Michigan in 2006 will remain stable and representative when applied to a different population, time, and political context in Texas.
 
+We model the probability of voting in a primary election as a logistic function of postcard treatment, voter engagement (including interaction effects), sex, and age. This structure allows us to estimate treatment effects across different types of voters and isolate the impact of each postcard message.
+
+The model shows that the “Neighbors” postcard is particularly effective, especially for individuals who rarely vote. In this group, the predicted probability of turnout increases dramatically, highlighting how social pressure may motivate even the least engaged voters.
 
 
 $$
@@ -58,3 +61,24 @@ $$
 \widehat{\text{logit}}(P(\text{voted} = 1)) = -1.89 + 0.089 \cdot \text{treatment}_{\text{Civic Duty}} + 0.125 \cdot \text{treatment}_{\text{Hawthorne}} + 0.227 \cdot \text{treatment}_{\text{Self}} + 0.371 \cdot \text{treatment}_{\text{Neighbors}} + 0.038 \cdot \text{sex}_{\text{Male}} + 0.020 \cdot \text{age}
 $$
 
+```{r}
+#| label: model-table
+#| echo: false
+
+library(gt)
+
+tidy(fit_vote, conf.int = TRUE) |>
+  select(term, estimate, conf.low, conf.high) |>
+  mutate(across(estimate:conf.high, round, 3)) |>
+  gt() |>
+  tab_header(
+    title = "Logistic Regression Coefficients",
+    subtitle = "Estimates and 95% Confidence Intervals"
+  ) |>
+  cols_label(
+    term = "Variable",
+    estimate = "Estimate",
+    conf.low = "Lower 95% CI",
+    conf.high = "Upper 95% CI"
+  )
+```

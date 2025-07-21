@@ -36,6 +36,35 @@ ul.task-list li input[type="checkbox"] {
 <link href="postcards_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="postcards_files/libs/bootstrap/bootstrap-bb462d781dde1847d9e3ccf7736099dd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -70,7 +99,19 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Encouraging voter turnout is a longstanding challenge in democratic elections, and campaigns often rely on tools like postcards to influence behavior. In this analysis, we use data from a 2006 field experiment in Michigan with over 180,000 observations to explore whether similar postcard strategies might help increase turnout in the upcoming Texas gubernatorial election, while acknowledging the contextual differences between states.</p>
+<p>Encouraging voter turnout is a longstanding challenge in democratic elections, and campaigns often use strategies like postcards to influence civic participation. In this analysis, we examine data from a 2006 field experiment in Michigan involving over 180,000 registered voters to assess whether sending postcards can increase primary election turnout — with the goal of informing similar efforts in the upcoming Texas gubernatorial election. However, our model may be limited by the assumption that the treatment effects observed in Michigan in 2006 will remain stable and representative when applied to a different population, time, and political context in Texas.</p>
+<p><span class="math display">\[
+Y \sim \text{Bernoulli}(\rho)
+\]</span></p>
+<p><span class="math display">\[
+\log\left(\frac{\rho}{1 - \rho}\right) = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_n X_n
+\]</span></p>
+<p><span class="math display">\[
+\rho = \frac{1}{1 + e^{-(\beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_n X_n)}}
+\]</span></p>
+<p><span class="math display">\[
+\widehat{\text{logit}}(P(\text{voted} = 1)) = -1.89 + 0.089 \cdot \text{treatment}_{\text{Civic Duty}} + 0.125 \cdot \text{treatment}_{\text{Hawthorne}} + 0.227 \cdot \text{treatment}_{\text{Self}} + 0.371 \cdot \text{treatment}_{\text{Neighbors}} + 0.038 \cdot \text{sex}_{\text{Male}} + 0.020 \cdot \text{age}
+\]</span></p>
 
 </main>
 <!-- /main column -->

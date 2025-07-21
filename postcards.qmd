@@ -11,6 +11,50 @@ execute:
 ```{r}
 library(tidyverse)
 library(primer.data)
+library(tidymodels)
+library(broom)
 ```
 
-Encouraging voter turnout is a longstanding challenge in democratic elections, and campaigns often rely on tools like postcards to influence behavior. In this analysis, we use data from a 2006 field experiment in Michigan with over 180,000 observations to explore whether similar postcard strategies might help increase turnout in the upcoming Texas gubernatorial election, while acknowledging the contextual differences between states.
+```{r}
+#| cache: true
+
+x <- shaming |> 
+  mutate(civ_engage = primary_00 + primary_02 + primary_04 + 
+                    general_00 + general_02 + general_04) |> 
+  select(primary_06, treatment, sex, age, civ_engage) |> 
+  mutate(voter_class = factor(
+    case_when(
+      civ_engage %in% c(5, 6) ~ "Always Vote",
+      civ_engage %in% c(3, 4) ~ "Sometimes Vote",
+      civ_engage %in% c(1, 2) ~ "Rarely Vote"),
+         levels = c("Rarely Vote", 
+                    "Sometimes Vote", 
+                    "Always Vote"))) |>
+  mutate(voted = as.factor(primary_06))
+
+fit_vote <- logistic_reg(engine = "glm") |>
+  fit(voted ~ age + sex + treatment * voter_class, data = x)
+```
+
+
+Encouraging voter turnout is a longstanding challenge in democratic elections, and campaigns often use strategies like postcards to influence civic participation. In this analysis, we examine data from a 2006 field experiment in Michigan involving over 180,000 registered voters to assess whether sending postcards can increase primary election turnout — with the goal of informing similar efforts in the upcoming Texas gubernatorial election. However, our model may be limited by the assumption that the treatment effects observed in Michigan in 2006 will remain stable and representative when applied to a different population, time, and political context in Texas.
+
+
+
+$$
+Y \sim \text{Bernoulli}(\rho)
+$$
+
+$$
+\log\left(\frac{\rho}{1 - \rho}\right) = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_n X_n
+$$
+
+$$
+\rho = \frac{1}{1 + e^{-(\beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_n X_n)}}
+$$
+
+
+$$
+\widehat{\text{logit}}(P(\text{voted} = 1)) = -1.89 + 0.089 \cdot \text{treatment}_{\text{Civic Duty}} + 0.125 \cdot \text{treatment}_{\text{Hawthorne}} + 0.227 \cdot \text{treatment}_{\text{Self}} + 0.371 \cdot \text{treatment}_{\text{Neighbors}} + 0.038 \cdot \text{sex}_{\text{Male}} + 0.020 \cdot \text{age}
+$$
+

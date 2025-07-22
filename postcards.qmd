@@ -101,25 +101,3 @@ $$
 \widehat{\text{logit}}(P(\text{voted} = 1)) = -1.89 + 0.089 \cdot \text{treatment}_{\text{Civic Duty}} + 0.125 \cdot \text{treatment}_{\text{Hawthorne}} + 0.227 \cdot \text{treatment}_{\text{Self}} + 0.371 \cdot \text{treatment}_{\text{Neighbors}} + 0.038 \cdot \text{sex}_{\text{Male}} + 0.020 \cdot \text{age}
 $$
 
-```{r}
-#| label: model-table
-#| echo: false
-
-library(gt)
-
-tidy(fit_vote, conf.int = TRUE) |>
-  select(term, estimate, conf.low, conf.high) |>
-  mutate(across(estimate:conf.high, round, 3)) |>
-  gt() |>
-  tab_header(
-    title = "Logistic Regression Coefficients",
-    subtitle = "Estimates and 95% Confidence Intervals"
-  ) |>
-  cols_label(
-    term = "Variable",
-    estimate = "Estimate",
-    conf.low = "Lower 95% CI",
-    conf.high = "Upper 95% CI"
-  )
-```
-
